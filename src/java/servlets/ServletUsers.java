@@ -42,7 +42,6 @@ public class ServletUsers extends HttpServlet {
         // Pratique pour décider de l'action à faire  
         String action = request.getParameter("action");
         String forwardTo = "";
-        String message = "";
 
         String login = null, nom = null, prenom = null;
 
@@ -94,7 +93,7 @@ public class ServletUsers extends HttpServlet {
             forwardTo = "afficher-utilisateurs.jsp";
         }
 
-        RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
+        RequestDispatcher dp = request.getRequestDispatcher(forwardTo);
         dp.forward(request, response);
         // Après un forward, plus rien ne peut être exécuté après !  
     }

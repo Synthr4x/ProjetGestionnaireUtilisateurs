@@ -27,13 +27,13 @@
 
     </head>  
     <body>  
-        <%@include file="${requestScope.header}" %> 
+        <!--#include virtual="t"<%= request.getAttribute("header")%>"--> 
 
         <div class="container-fluid">
             <div class="row">
 
+        <!--#include virtual="t"<%= request.getAttribute("menu")%>"--> 
 
-                <%@include file="${requestScope.menu}" %> 
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <div class="jumbotron">
                         <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->  
@@ -138,7 +138,7 @@
                     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
                     <br>
                     <hr>
-                    <%@include file="${requestScope.footer}" %> 
+        <!--#include virtual="t"<%= request.getAttribute("footer")%>"--> 
 
                 </div>
             </div>

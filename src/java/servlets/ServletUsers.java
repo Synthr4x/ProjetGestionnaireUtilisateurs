@@ -44,7 +44,7 @@ public class ServletUsers extends HttpServlet {
         String forwardTo = "";
         String message = "";
 
-        String login, nom, prenom;
+        String login = null, nom = null, prenom = null;
 
         nom = (String) request.getParameter("nom");
         prenom = (String) request.getParameter("prenom");
@@ -54,51 +54,45 @@ public class ServletUsers extends HttpServlet {
             if (action.equals("listerLesUtilisateurs")) {
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                 request.setAttribute("listeDesUsers", liste);
-                forwardTo = "index.jsp?action=listerLesUtilisateurs";
-                message = "Liste des utilisateurs";
+                forwardTo = "afficher-utilisateurs.jsp";
             } else if (action.equals("creerUtilisateursDeTest")) {
                 gestionnaireUtilisateurs.creerUtilisateursDeTest();
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                 request.setAttribute("listeDesUsers", liste);
-                forwardTo = "index.jsp?action=listerLesUtilisateurs";
-                message = "Liste des utilisateurs";
+                forwardTo = "afficher-utilisateurs.jsp";
             } else if (action.equals("creerUnUtilisateur")) {
+                if (login != null) {
+                    gestionnaireUtilisateurs.creeUtilisateur(nom, prenom, login);
+                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
+                    request.setAttribute("listeDesUsers", liste);
+                }
 
-                gestionnaireUtilisateurs.creeUtilisateur(nom, prenom, login);
-
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-                request.setAttribute("listeDesUsers", liste);
-                forwardTo = "index.jsp?action=listerLesUtilisateurs";
-                message = "Création d'un utilisateur";
+                forwardTo = "creer-utilisateurs.jsp";
 
             } else if (action.equals("chercherParLogin")) {
+                if (login != null) {
+                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUtilisateurByLogin(login);
+                    request.setAttribute("listeDesUsers", liste);
+                }
 
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUtilisateurByLogin(login);
-
-                request.setAttribute("listeDesUsers", liste);
-                forwardTo = "index.jsp?action=listerLesUtilisateurs";
-                message = "Détail d'un utilisateur";
+                forwardTo = "afficher-detail-utilisateur.jsp";
 
             } else if (action.equals("updateUtilisateur")) {
 
-                gestionnaireUtilisateurs.majUtilisateur(login, nom, prenom);
+                if (login != null) {
+                    gestionnaireUtilisateurs.majUtilisateur(login, nom, prenom);
 
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-                request.setAttribute("listeDesUsers", liste);
-                forwardTo = "index.jsp?action=listerLesUtilisateurs";
-                message = "Modification'un utilisateur";
+                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
+                    request.setAttribute("listeDesUsers", liste);
+                }
+                forwardTo = "updateUtilisateur";
 
             } else {
-                forwardTo = "index.jsp?action=todo";
-                message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !";
+                forwardTo = "afficher-utilisateurs.jsp";
             }
         } else {
-            forwardTo = "index.jsp?action=listerLesUtilisateurs";
+            forwardTo = "afficher-utilisateurs.jsp";
         }
-
-        request.setAttribute("menu", "menu.jsp");
-        request.setAttribute("footer", "footer.jsp");
-        request.setAttribute("header", "header.jsp");
 
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
         dp.forward(request, response);
@@ -143,5 +137,4 @@ public class ServletUsers extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

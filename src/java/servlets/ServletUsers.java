@@ -22,7 +22,7 @@ import utilisateurs.modele.Utilisateur;
  *
  * @author Christian
  */
-@WebServlet(name = "ServletUsers", urlPatterns = {"/ServletUsers"})
+@WebServlet(name = "ServletUsers", urlPatterns = {"/ServletUsers", "/"})
 public class ServletUsers extends HttpServlet {
 
     @EJB
@@ -92,7 +92,13 @@ public class ServletUsers extends HttpServlet {
                 forwardTo = "index.jsp?action=todo";
                 message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !";
             }
+        } else {
+            forwardTo = "index.jsp?action=listerLesUtilisateurs";
         }
+
+        request.setAttribute("menu", "menu.jsp");
+        request.setAttribute("footer", "footer.jsp");
+        request.setAttribute("header", "header.jsp");
 
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
         dp.forward(request, response);

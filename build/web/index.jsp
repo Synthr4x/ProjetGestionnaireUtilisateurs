@@ -27,31 +27,13 @@
 
     </head>  
     <body>  
-
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Project name</a>
-                </div>
-            </div>
-        </div>
+        <%@include file="${requestScope.header}" %> 
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-3 col-md-2 sidebar">
-                    <ul class="nav nav-sidebar">
-                        <li><a href="#">Overview</a></li> <!--  class="active" -->
-                        <li><a href="#">Reports</a></li>
-                        <li><a href="#">Analytics</a></li>
-                        <li><a href="#">Export</a></li>
-                    </ul>
-                </div>
+
+
+                <%@include file="${requestScope.menu}" %> 
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <div class="jumbotron">
                         <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->  
@@ -155,10 +137,9 @@
 
                     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
                     <br>
+                    <hr>
+                    <%@include file="${requestScope.footer}" %> 
 
-                    <div class="footer">
-                        <p>&copy; Company 2014</p>
-                    </div>
                 </div>
             </div>
 

@@ -1,21 +1,29 @@
-package utilisateurs.gestionnaires;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package utilisateurs.gestionnaire;
 
 import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import utilisateurs.modele.Utilisateur;
+import utilisateurs.modeles.Utilisateur;
 
+/**
+ *
+ * @author Christian
+ */
 @Stateless
 public class GestionnaireUtilisateurs {
-    @PersistenceContext(unitName = "TP2_-_WebPU")
+
+    @PersistenceContext(unitName = "ProjetWebPU")
     private EntityManager em;
 
     // Ici injection de code : on n'initialise pas. L'entity manager sera créé  
     // à partir du contenu de persistence.xml  
-    
-
     public void creerUtilisateursDeTest() {
         creeUtilisateur("John", "Lennon", "jlennon");
         creeUtilisateur("Paul", "Mac Cartney", "pmc");
@@ -49,19 +57,18 @@ public class GestionnaireUtilisateurs {
         q.setParameter("param", login);
 
         Utilisateur u = (Utilisateur) q.getSingleResult();
-        
+
         u.setFirstname(prenom);
         u.setLastname(nom);
-        
+
         em.persist(u);
-        
+
         return u;
     }
-    
+
     // pagination
     // q.setFirstResult(offset*nb)
     // q.setMaxResult(nb)
-
     public void persist(Object object) {
         em.persist(object);
     }

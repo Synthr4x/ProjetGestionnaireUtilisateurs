@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utilisateurs.modele;
+package utilisateurs.modeles;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -35,8 +35,6 @@ public class Utilisateur implements Serializable {
         this.lastname = nom;
         this.firstname = prenom;
     }
-
-   
 
     @Override
     public int hashCode() {
@@ -98,8 +96,8 @@ public class Utilisateur implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    
-     public String getFirstname() {
+
+    public String getFirstname() {
         return firstname;
     }
 

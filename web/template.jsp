@@ -12,7 +12,7 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="https://googledrive.com/host/0B_t_48Rr2t_4bkliaUNpanBYQnM">
     </head>  
     <body>  
         <jsp:include page="header.jsp"/>  

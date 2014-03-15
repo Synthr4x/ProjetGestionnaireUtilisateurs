@@ -22,17 +22,13 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
-        <link rel="stylesheet" href="css/style.css">
-
-
+        <link rel="stylesheet" href="/ressources/css/style.css">
     </head>  
     <body>  
-        <!--#include virtual="t"<%= request.getAttribute("header")%>"--> 
 
         <div class="container-fluid">
             <div class="row">
 
-        <!--#include virtual="t"<%= request.getAttribute("menu")%>"--> 
 
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <div class="jumbotron">
@@ -138,7 +134,6 @@
                     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
                     <br>
                     <hr>
-        <!--#include virtual="t"<%= request.getAttribute("footer")%>"--> 
 
                 </div>
             </div>

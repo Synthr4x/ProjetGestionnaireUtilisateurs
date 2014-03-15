@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Collection;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -17,16 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 import utilisateurs.gestionnaire.GestionnaireUtilisateurs;
 import utilisateurs.modeles.Utilisateur;
 
-/**
- *
- * @author Christian
- */
-@WebServlet(name = "ServletUsers", urlPatterns = {"/ServletUsers", "/"})
-public class ServletUsers extends HttpServlet {
+@WebServlet(name = "AfficherUtilisateurs", urlPatterns = {"/AfficherUtilisateurs"})
+public class ServletAfficherUsers extends HttpServlet {
 
     @EJB
     private GestionnaireUtilisateurs gestionnaireUtilisateurs;
-
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,66 +36,21 @@ public class ServletUsers extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Pratique pour décider de l'action à faire  
+        
         String action = request.getParameter("action");
-        String forwardTo = "";
-
-        String login = null, nom = null, prenom = null;
-
-        nom = (String) request.getParameter("nom");
-        prenom = (String) request.getParameter("prenom");
-        login = (String) request.getParameter("login");
-
+        
         if (action != null) {
             if (action.equals("listerLesUtilisateurs")) {
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-                request.setAttribute("listeDesUsers", liste);
-                forwardTo = "afficher-utilisateurs.jsp";
-                
-            } else if (action.equals("creerUtilisateursDeTest")) {
-                gestionnaireUtilisateurs.creerUtilisateursDeTest();
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-                request.setAttribute("listeDesUsers", liste);
-                request.setAttribute("messages", liste.size() + " nouveaux utilisateurs crées.");
-                forwardTo = "AfficherUtilisateurs";
-                
-            } else if (action.equals("creerUnUtilisateur")) {
-                if (login != null) {
-                    gestionnaireUtilisateurs.creeUtilisateur(nom, prenom, login);
                     Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                     request.setAttribute("listeDesUsers", liste);
-                }
-
-                forwardTo = "creer-utilisateurs.jsp";
-
-            } else if (action.equals("chercherParLogin")) {
-                if (login != null) {
-                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUtilisateurByLogin(login);
-                    request.setAttribute("listeDesUsers", liste);
-                }
-
-                forwardTo = "afficher-detail-utilisateur.jsp";
-
-            } else if (action.equals("updateUtilisateur")) {
-
-                if (login != null) {
-                    gestionnaireUtilisateurs.majUtilisateur(login, nom, prenom);
-
-                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-                    request.setAttribute("listeDesUsers", liste);
-                }
-                forwardTo = "updateUtilisateur";
-
-            } else {
-                forwardTo = "afficher-utilisateurs.jsp";
             }
-        } else {
-            forwardTo = "afficher-utilisateurs.jsp";
         }
-
+        
+        
+        String forwardTo = "afficher-utilisateurs.jsp";
+         
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo);
         dp.forward(request, response);
-        // Après un forward, plus rien ne peut être exécuté après !  
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -138,4 +91,5 @@ public class ServletUsers extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

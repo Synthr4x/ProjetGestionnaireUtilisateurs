@@ -1,3 +1,5 @@
+<h3><a href="ServletUsers?action=creerUtilisateursDeTest">Créer 4 utilisateurs de test</a></h3></li>  
+
 <h3>Créer un utilisateur</h3>  
 <form action="ServletUsers" method="get">  
     Nom : <input type="text" name="nom"/><br>  

@@ -89,9 +89,11 @@ public class ServletUsers extends HttpServlet {
                 forwardTo = "updateUtilisateur";
 
             } else {
+                // TODO à changer vers index.jsp
                 forwardTo = "afficher-utilisateurs.jsp";
             }
         } else {
+            // TODO à changer vers index.jsp
             forwardTo = "afficher-utilisateurs.jsp";
         }
 

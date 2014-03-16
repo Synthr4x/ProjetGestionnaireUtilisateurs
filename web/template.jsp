@@ -1,6 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"  
          pageEncoding="UTF-8"%>  
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 
 <!DOCTYPE HTML>  
 <html>  
@@ -21,15 +22,25 @@
         <jsp:include page="header.jsp"/>  
         <div class="container-fluid">
             <div class="row">
-                <jsp:include page="menu.jsp"/>  
+                <!-- Si la personne n'est pas connectée, elle n'a pas accès au menu de navigation -->
+                <c:if test="${sessionScope.isLoginOk == true}"> 
+                    <jsp:include page="menu.jsp"/>  
+                </c:if>
+                
 
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <div class="jumbotron">
                         <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->  
                         <h1>${param.glyph} ${param.title}</h1> 
 
+                        
                     </div>
-                    <jsp:include page="${param.content}.jsp"/>  
+                        
+                    <!-- Si la personne n'est pas connectée, on la redirige obligatoirement vers l'accueil -->
+                    <c:choose>
+                        <c:when test="${sessionScope.isLoginOk == true}"><jsp:include page="${param.content}.jsp"/></c:when>
+                        <c:otherwise><jsp:include page="accueil-content.jsp"/></c:otherwise>
+                    </c:choose>
 
                     <jsp:include page="footer.jsp"/>  
                 </div>

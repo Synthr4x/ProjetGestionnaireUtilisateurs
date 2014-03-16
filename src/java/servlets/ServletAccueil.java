@@ -8,20 +8,26 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import utilisateurs.gestionnaire.GestionnaireUtilisateurs;
 
 /**
  *
  * @author Jokho
  */
-@WebServlet(name = "ServletAccueil", urlPatterns = {"/"})
+@WebServlet(name = "Accueil", urlPatterns = {"/"})
 public class ServletAccueil extends HttpServlet {
 
+    @EJB
+    private GestionnaireUtilisateurs gestionnaireUtilisateurs;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,6 +39,21 @@ public class ServletAccueil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        
+        if (login != null && password != null) {
+            if(gestionnaireUtilisateurs.isLoginCorrect(login, password)) {
+                // On récupere la session
+                HttpSession session = request.getSession();
+                session.setAttribute("isLoginOk", true);
+                request.setAttribute("message", "Bienvenue chez vous " + login + " !");
+            }
+            else {
+                request.setAttribute("messageErreur", "Login ou mot de passe incorrect. Try again.");
+            }
+        }
         
         String forwardTo = "accueil.jsp";
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo);

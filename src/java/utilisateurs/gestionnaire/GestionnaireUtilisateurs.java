@@ -120,10 +120,18 @@ public class GestionnaireUtilisateurs {
         return Integer.valueOf(q.getSingleResult().toString());
     }
 
-    // pagination
-    // q.setFirstResult(offset*nb)
-    // q.setMaxResult(nb)
     public void persist(Object object) {
         em.persist(object);
+    }
+    
+    /**
+     * méthode permettant de savoir si les informations de login sont correctes.
+     * @param login
+     * @param password
+     * @return 
+     */
+    public boolean isLoginCorrect(String login, String password) {
+        // TODO à finir
+        return true;
     }
 }

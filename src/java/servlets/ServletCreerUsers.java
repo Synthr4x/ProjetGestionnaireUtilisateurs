@@ -50,7 +50,7 @@ public class ServletCreerUsers extends HttpServlet {
                 gestionnaireUtilisateurs.creerUtilisateursDeTest();
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                 request.setAttribute("listeDesUsers", liste);
-                request.setAttribute("messages", liste.size() + " nouveaux utilisateurs crées.");
+                request.setAttribute("message", "4 nouveaux utilisateurs crées.");
                 forwardTo = "AfficherUtilisateurs";
                 
             } else if (action.equals("creerUnUtilisateur")) {
@@ -62,6 +62,7 @@ public class ServletCreerUsers extends HttpServlet {
                     gestionnaireUtilisateurs.creeUtilisateur(nom, prenom, login);
                     Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                     request.setAttribute("listeDesUsers", liste);
+                    request.setAttribute("message", "Nouvel utilisateur " + login +" créé.");
                 }
 
                 forwardTo = "AfficherUtilisateurs";

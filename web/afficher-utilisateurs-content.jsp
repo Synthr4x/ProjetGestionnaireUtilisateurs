@@ -1,10 +1,11 @@
 <!-- Ne pas oublier cette ligne sinon tous les tags de la JSTL seront ignorés ! -->  
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 
- <c:if test="${!empty param['message']}">
-    <p class="bg-info">${param.message}</p>
+<c:if test="${!empty requestScope['message']}">
+    <p class="bg-info">${requestScope['message']}</p>
 </c:if>  
-
+    
+    
 <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->  
 <h2>Liste des utilisateurs</h2>  
 <br>

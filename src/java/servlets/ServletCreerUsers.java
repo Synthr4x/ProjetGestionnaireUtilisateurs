@@ -62,7 +62,7 @@ public class ServletCreerUsers extends HttpServlet {
                     gestionnaireUtilisateurs.creeUtilisateur(nom, prenom, login);
                     Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                     request.setAttribute("listeDesUsers", liste);
-                    request.setAttribute("message", "Nouvel utilisateur " + login +" créé.");
+                    request.setAttribute("message", "Nouvel utilisateur <b>" + login +"</b> créé.");
                 }
 
                 forwardTo = "AfficherUtilisateurs";

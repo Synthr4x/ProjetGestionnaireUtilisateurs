@@ -29,6 +29,37 @@ public class GestionnaireUtilisateurs {
         creeUtilisateur("Paul", "Mac Cartney", "pmc");
         creeUtilisateur("Ringo", "Starr", "rstarr");
         creeUtilisateur("Georges", "Harisson", "georgesH");
+        creeUtilisateur("Jean", "Bon", "jBon");
+        creeUtilisateur("Anne", "Orak", "aOrak");
+        creeUtilisateur("Jon", "Bon Jovi", "jbj");
+        creeUtilisateur("Eddie", "Van Halen", "evh");
+        creeUtilisateur("Wolfgang", "Van Halen", "wvh");
+        creeUtilisateur("David Lee", "Roth", "dlr");
+        creeUtilisateur("Angus", "Young", "aYoung");
+        creeUtilisateur("Malcolm", "Young", "mYoung");
+        creeUtilisateur("Brian", "Johnson", "bJohnson");
+        creeUtilisateur("Bon", "Scott", "ripBS");
+        creeUtilisateur("Freddie", "Mercury", "fMercury");
+        creeUtilisateur("Brian", "May", "bMay");
+        creeUtilisateur("Phil", "Collins", "pCollins");
+        creeUtilisateur("Ozzy", "Osbourne", "princeOfDarkness");
+        creeUtilisateur("Tony", "Iommy", "fatherOfMetal");
+        creeUtilisateur("Bruce", "Dickinson", "bDickinson");
+        creeUtilisateur("Dave", "Murray", "dMurray");
+        creeUtilisateur("Steven", "Taylor", "sTaylor");
+        creeUtilisateur("Ronnie James", "Dio", "pleaseSendUsBackDio");
+        creeUtilisateur("Zack", "Wylde", "zWylde");
+        creeUtilisateur("Marc", "Knopfler", "mk");
+        creeUtilisateur("Paul", "Stanley", "pStanley");
+        creeUtilisateur("Gene", "Simmons", "bigTong");
+        creeUtilisateur("David", "Gilmour", "DGilmour");
+        creeUtilisateur("Mick", "Jagger", "MJagger");
+        creeUtilisateur("Keith", "Richards", "KRichards");
+        creeUtilisateur("Klaus", "Meine", "KMeine");
+        creeUtilisateur("Gordon Matthew Thomas", "Sumner", "String");
+        creeUtilisateur("Roger Daltrey", "Daltrey", "WhoAmI");
+        creeUtilisateur("Steve", "Lukather", "SToto");
+        creeUtilisateur("Saul", "Hudson", "Slash");
     }
 
     public Utilisateur creeUtilisateur(String nom, String prenom, String login) {

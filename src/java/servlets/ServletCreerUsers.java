@@ -50,7 +50,7 @@ public class ServletCreerUsers extends HttpServlet {
                 gestionnaireUtilisateurs.creerUtilisateursDeTest();
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                 request.setAttribute("listeDesUsers", liste);
-                request.setAttribute("message", "4 nouveaux utilisateurs crées.");
+                request.setAttribute("message", "Plein de nouveaux utilisateurs crées.");
                 forwardTo = "AfficherUtilisateurs";
                 
             } else if (action.equals("creerUnUtilisateur")) {

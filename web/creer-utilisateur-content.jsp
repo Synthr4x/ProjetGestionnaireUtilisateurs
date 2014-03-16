@@ -1,11 +1,29 @@
-<button type="button" class="btn btn-primary" onclick="self.location.href='CreerUtilisateurs?action=creerUtilisateursDeTest'" >Créer 4 utilisateurs de test</button>
+<center><button type="button" class="btn btn-primary" onclick="self.location.href='CreerUtilisateurs?action=creerUtilisateursDeTest'" >Créer pleins d'utilisateurs de test</button></center>
 </br></br></br>
-<h3>Créer un utilisateur</h3>
-<form action="CreerUtilisateurs" method="get">  
-    <label for="nom" >Nom : </label><input type="text" name="nom"/><br>
-    <label for="prenom" >Prénom : </label><input type="text" name="prenom"/><br>  
-    <label for="login" >Login : </label><input type="text" name="login"/><br>  
-    <!-- Astuce pour passer des paramètres à une servlet depuis un formulaire JSP !-->  
-    <input type="hidden" name="action" value="creerUnUtilisateur"/>  
-    <input type="submit" class="btn btn-primary" value="Créer l'utilisateur" name="submit"/>  
-</form>  
+<center><h3>Créer un utilisateur</h3><br></center>
+<form class="form-horizontal" action="CreerUtilisateurs" method="get">
+  <div class="form-group">
+    <label for="nom" class="col-sm-2 control-label">Nom</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="prenom" class="col-sm-2 control-label">Prénom</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="prenom" placeholder="Prénom" name="prenom">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="login" class="col-sm-2 control-label">Login</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="login" placeholder="Login" name="login">
+    </div>
+  </div>
+  <input type="hidden" name="action" value="creerUnUtilisateur"/>  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input type="submit" class="btn btn-primary" value="Créer l'utilisateur" name="submit"/> 
+    </div>
+  </div>
+</form>

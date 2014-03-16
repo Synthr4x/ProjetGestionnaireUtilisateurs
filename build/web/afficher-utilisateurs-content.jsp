@@ -35,17 +35,18 @@
     <!-- Affichage du solde total dans la dernière ligne du tableau -->  
     <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td></td></tr>  
 </table>
-
-Total : ${totalUtilisateur}
-
 <ul class="pagination">
     
     <c:forEach var="i" begin="1" end="${totalUtilisateur}" step="10">
-        <!--<option value="<c:out value="${i+100}"/>"><c:out value="${i+100}"/></option>-->
-        
-        <c:choose>
-            <c:when test="i+10>${totalUtilisateur}"> <li><a href="#">${i} - ${totalUtilisateur}</a></li></c:when>
-            <c:otherwise><li><a href="#">${i} - ${i+9}</a></li></c:otherwise>
-        </c:choose>
+        <li
+            <c:if test="${i==offset}">         
+                class="active"
+            </c:if>  
+            >
+            <c:choose>
+                <c:when test="${i+10>totalUtilisateur}"><a href="AfficherUtilisateurs?offset=${i-1}">${i} - ${totalUtilisateur}</a></c:when>
+                <c:otherwise><a href="AfficherUtilisateurs?offset=${i-1}">${i} - ${i+9}</a></c:otherwise>
+            </c:choose>
+        </li>
     </c:forEach> 
 </ul>

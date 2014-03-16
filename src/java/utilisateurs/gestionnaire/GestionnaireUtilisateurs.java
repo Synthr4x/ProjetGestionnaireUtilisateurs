@@ -101,12 +101,9 @@ public class GestionnaireUtilisateurs {
     public Collection<Utilisateur> getListeUtilisateurs(int offset) {
         // Exécution d'une requête équivalente à un select *  
         Query q = em.createQuery("select u from Utilisateur u");
-       
-        int indicePagination = 10;
-        
-        q.setFirstResult(offset*indicePagination);
-        q.setMaxResults(indicePagination);
-        
+
+        q.setFirstResult(offset);
+        q.setMaxResults(10);        
         return q.getResultList();
     }
     

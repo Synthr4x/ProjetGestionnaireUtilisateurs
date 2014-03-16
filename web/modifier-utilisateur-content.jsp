@@ -1,16 +1,27 @@
-<form role="form" action="ModifierUtilisateurs" method="get"> 
-    <div class="form-group">
-        <label for="nom">Nom :</label>
-        <input type="text" class="form-control" id="nom" name="nom" placeholder="entrer nom">
+<form class="form-horizontal" action="ModifierUtilisateurs" method="get">
+  <div class="form-group">
+    <label for="nom" class="col-sm-2 control-label">Nom</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom">
     </div>
-    <div class="form-group">
-        <label for="prenom">Prenom :</label>
-        <input type="text" class="form-control" id="prenom" name="prenom" placeholder="entrer prenom">
+  </div>
+  <div class="form-group">
+    <label for="prenom" class="col-sm-2 control-label">Prénom</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="prenom" placeholder="Prénom" name="prenom">
     </div>
-    <div class="form-group">
-        <label for="login">Login :</label>
-        <input type="text" class="form-control" id="login" name="login" placeholder="entrer login">
-    </div>  
-    <input type="hidden" name="action" value="updateUtilisateur"/>  
-    <input type="submit" class="btn btn-default" value="Mettre à jour" name="submit"/>  
-</form>  
+  </div>
+  <div class="form-group">
+    <label for="login" class="col-sm-2 control-label">Login</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="login" placeholder="Login" name="login">
+    </div>
+  </div>
+  <input type="hidden" name="action" value="updateUtilisateur"/>  
+     
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input type="submit" class="btn btn-primary" value="Mettre à jour" name="submit"/> 
+    </div>
+  </div>
+</form>

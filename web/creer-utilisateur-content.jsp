@@ -1,6 +1,4 @@
-<center><button type="button" class="btn btn-primary" onclick="self.location.href='CreerUtilisateurs?action=creerUtilisateursDeTest'" >Créer pleins d'utilisateurs de test</button></center>
-</br></br></br>
-<center><h3>Créer un utilisateur</h3><br></center>
+
 <form class="form-horizontal" action="CreerUtilisateurs" method="get">
   <div class="form-group">
     <label for="nom" class="col-sm-2 control-label">Nom</label>
@@ -27,3 +25,6 @@
     </div>
   </div>
 </form>
+</br></br></br></br></br></br>
+<center><button type="button" class="btn btn-primary" onclick="self.location.href='CreerUtilisateurs?action=creerUtilisateursDeTest'" >Créer pleins d'utilisateurs de test</button></center>
+

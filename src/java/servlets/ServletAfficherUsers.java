@@ -36,7 +36,6 @@ public class ServletAfficherUsers extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-       
         String strOffset = request.getParameter("offset");
 
         int offset = 0;
@@ -48,6 +47,7 @@ public class ServletAfficherUsers extends HttpServlet {
         request.setAttribute("listeDesUsers", liste);
         request.setAttribute("offset", offset);
         request.setAttribute("totalUtilisateur", gestionnaireUtilisateurs.getNbUtilisateur());
+       
         
         String forwardTo = "afficher-utilisateurs.jsp";
          

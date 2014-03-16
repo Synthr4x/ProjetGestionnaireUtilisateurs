@@ -7,6 +7,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -47,12 +48,23 @@ public class ServletModifierUsers extends HttpServlet {
                 String  login = (String) request.getParameter("login");
 
                 if (login != null) {
-                    gestionnaireUtilisateurs.majUtilisateur(login, nom, prenom);
+                    Utilisateur u = gestionnaireUtilisateurs.majUtilisateur(login, nom, prenom);
 
-                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-                    request.setAttribute("listeDesUsers", liste);
-
-                    forwardTo = "AfficherUtilisateurs";
+                    ArrayList<Utilisateur> liste = new ArrayList();
+                    
+                    if (u == null) {
+                        request.setAttribute("messageErreur", "L'utilisateur " + login + " n'existe pas.");
+                        request.setAttribute("offset", 0);
+                        request.setAttribute("totalUtilisateur", 0);
+                    }
+                    else {
+                        liste.add(u);
+                        request.setAttribute("listeDesUsers", liste);
+                        request.setAttribute("offset", 0);
+                        request.setAttribute("totalUtilisateur", 1);
+                    }
+                    
+                    forwardTo = "afficher-utilisateurs.jsp";
                 }
             }
             else

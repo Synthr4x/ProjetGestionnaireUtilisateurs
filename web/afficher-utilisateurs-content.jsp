@@ -3,6 +3,9 @@
 
 <c:if test="${!empty requestScope['message']}">         
     <div class="alert alert-info">${requestScope['message']}</div>
+</c:if>
+<c:if test="${!empty requestScope['messageErreur']}">         
+    <div class="alert alert-danger">${requestScope['messageErreur']}</div>
 </c:if>  
 
 

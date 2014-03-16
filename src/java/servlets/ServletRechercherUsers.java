@@ -46,7 +46,13 @@ public class ServletRechercherUsers extends HttpServlet {
         if (login != null) {
             Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUtilisateurByLogin(login);
             request.setAttribute("listeDesUsers", liste);
-             forwardTo = "AfficherUtilisateurs";
+            request.setAttribute("offset", 0);
+            request.setAttribute("totalUtilisateur", 1);
+            
+            if (liste.size() == 0)
+                request.setAttribute("messageErreur", "L'utilisateur " + login + " n'existe pas.");
+            
+            forwardTo = "afficher-utilisateurs.jsp";
         }
 
        

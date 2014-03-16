@@ -87,7 +87,11 @@ public class GestionnaireUtilisateurs {
     public Utilisateur majUtilisateur(String login, String nom, String prenom) {
         Query q = em.createQuery("select u from Utilisateur u where u.login=:param");
         q.setParameter("param", login);
-
+       
+        if (q.getResultList().isEmpty()) {
+            return null;
+        }
+        
         Utilisateur u = (Utilisateur) q.getSingleResult();
 
         u.setFirstname(prenom);

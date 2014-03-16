@@ -1,6 +1,6 @@
 <button type="button" class="btn btn-primary" onclick="self.location.href='CreerUtilisateurs?action=creerUtilisateursDeTest'" >Créer 4 utilisateurs de test</button>
 </br></br></br>
-<h3>Créer un utilisateur</h3>  
+<h3>Créer un utilisateur</h3>
 <form action="CreerUtilisateurs" method="get">  
     <label for="nom" >Nom : </label><input type="text" name="nom"/><br>
     <label for="prenom" >Prénom : </label><input type="text" name="prenom"/><br>  

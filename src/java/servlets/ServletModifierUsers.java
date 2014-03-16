@@ -7,7 +7,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Collection;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -19,12 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 import utilisateurs.gestionnaire.GestionnaireUtilisateurs;
 import utilisateurs.modeles.Utilisateur;
 
-/**
- *
- * @author Jokho
- */
-@WebServlet(name = "CreerUtilisateurs", urlPatterns = {"/CreerUtilisateurs"})
-public class ServletCreerUsers extends HttpServlet {
+
+@WebServlet(name = "ModifierUtilisateurs", urlPatterns = {"/ModifierUtilisateurs"})
+public class ServletModifierUsers extends HttpServlet {
 
     @EJB
     private GestionnaireUtilisateurs gestionnaireUtilisateurs;
@@ -42,41 +38,34 @@ public class ServletCreerUsers extends HttpServlet {
             throws ServletException, IOException {
         
         String action = request.getParameter("action");
-        
         String forwardTo = "";
         
         if (action != null) {
-            if (action.equals("creerUtilisateursDeTest")) {
-                gestionnaireUtilisateurs.creerUtilisateursDeTest();
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-                request.setAttribute("listeDesUsers", liste);
-                request.setAttribute("messages", liste.size() + " nouveaux utilisateurs crées.");
-                forwardTo = "AfficherUtilisateurs";
-                
-            } else if (action.equals("creerUnUtilisateur")) {
+            if (action.equals("updateUtilisateur")) {
                 String nom  = (String) request.getParameter("nom");
                 String prenom = (String) request.getParameter("prenom");
                 String  login = (String) request.getParameter("login");
-                
+
                 if (login != null) {
-                    gestionnaireUtilisateurs.creeUtilisateur(nom, prenom, login);
+                    gestionnaireUtilisateurs.majUtilisateur(login, nom, prenom);
+
                     Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                     request.setAttribute("listeDesUsers", liste);
-                }
 
-                forwardTo = "AfficherUtilisateurs";
+                    forwardTo = "AfficherUtilisateurs";
+                }
             }
-            else {
-                forwardTo = "creer-utilisateur.jsp";
-            }
+            else
+                forwardTo = "modifier-utilisateur.jsp";
         }
         else {
-            forwardTo = "creer-utilisateur.jsp";
+            forwardTo = "modifier-utilisateur.jsp";
         }
-         
+        
+          
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo);
-        dp.forward(request, response);
-       
+        dp.forward(request, response);       
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

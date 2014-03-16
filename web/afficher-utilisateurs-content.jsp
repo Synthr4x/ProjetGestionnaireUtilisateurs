@@ -34,4 +34,18 @@
 
     <!-- Affichage du solde total dans la dernière ligne du tableau -->  
     <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td></td></tr>  
-</table>  
+</table>
+
+Total : ${totalUtilisateur}
+
+<ul class="pagination">
+    
+    <c:forEach var="i" begin="1" end="${totalUtilisateur}" step="10">
+        <!--<option value="<c:out value="${i+100}"/>"><c:out value="${i+100}"/></option>-->
+        
+        <c:choose>
+            <c:when test="i+10>${totalUtilisateur}"> <li><a href="#">${i} - ${totalUtilisateur}</a></li></c:when>
+            <c:otherwise><li><a href="#">${i} - ${i+9}</a></li></c:otherwise>
+        </c:choose>
+    </c:forEach> 
+</ul>

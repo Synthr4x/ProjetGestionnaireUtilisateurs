@@ -36,15 +36,18 @@ public class ServletAfficherUsers extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String action = request.getParameter("action");
-        
-        if (action != null) {
-            if (action.equals("listerLesUtilisateurs")) {
-                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-                    request.setAttribute("listeDesUsers", liste);
-            }
-        }
-        
+       
+        String strOffset = request.getParameter("offset");
+
+        int offset = 0;
+
+        if (strOffset != null) {
+            offset = Integer.parseInt(strOffset);
+        }            
+        Collection<Utilisateur> liste = gestionnaireUtilisateurs.getListeUtilisateurs(offset);
+        request.setAttribute("listeDesUsers", liste);
+        request.setAttribute("offset", offset);
+        request.setAttribute("totalUtilisateur", gestionnaireUtilisateurs.getNbUtilisateur());
         
         String forwardTo = "afficher-utilisateurs.jsp";
          

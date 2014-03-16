@@ -68,6 +68,7 @@ public class GestionnaireUtilisateurs {
         return u;
     }
 
+    // TODO à virer à terme
     public Collection<Utilisateur> getAllUsers() {
         // Exécution d'une requête équivalente à un select *  
         Query q = em.createQuery("select u from Utilisateur u");
@@ -95,6 +96,27 @@ public class GestionnaireUtilisateurs {
         em.persist(u);
 
         return u;
+    }
+    
+    public Collection<Utilisateur> getListeUtilisateurs(int offset) {
+        // Exécution d'une requête équivalente à un select *  
+        Query q = em.createQuery("select u from Utilisateur u");
+       
+        int indicePagination = 10;
+        
+        q.setFirstResult(offset*indicePagination);
+        q.setMaxResults(indicePagination);
+        
+        return q.getResultList();
+    }
+    
+    /**
+     * Méthode permettant de récuperer le nombre d'utilisateur dans la BDD
+     * @return 
+     */
+    public int getNbUtilisateur() {
+        Query q = em.createQuery("select count(u) from Utilisateur u");
+        return Integer.valueOf(q.getSingleResult().toString());
     }
 
     // pagination

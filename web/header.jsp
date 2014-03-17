@@ -10,35 +10,24 @@
             </button>
             <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-music"></i> TP2 - Pavinich & Siddi</a>
         </div>
-        
+
         <ul class="nav navbar-nav navbar-right">
-            <!--<li>
-                <a href="#">Dashboard</a>
-            </li>
-            <li>
-                <a href="#">Settings</a>
-            </li>
-            <li>
-                <a href="#">Profile</a>
-            </li>
-            <li>
-                <a href="#">Help</a>
-            </li>-->
-            
-            <!-- -->
-            <c:if test="${!(sessionScope.isLoginOk == true)}"> 
-                    <form class="navbar-form navbar-right" action="${pageContext.servletContext.contextPath}/Accueil" method="get">
-                        <input class="form-control" type="text" placeholder="Login" name="login">
-                        <input class="form-control" type="password" placeholder="Mot de passe" name="password">
-                        <input type="submit" class="btn btn-primary" value="Connexion" name="submit"/>
-                    </form> 
-            </c:if>  
-            
+
+
+
             <c:choose>
-                <c:when test="${sessionScope.isLoginOk == true}">
-                    
+                <c:when test="${sessionScope.isLoginOk == false}">
+                    <form class="navbar-form navbar-right" action="${pageContext.servletContext.contextPath}/Accueil" method="post">
+                        <input class="form-control" type="text" placeholder="Login" name="login">
+                        <input class="form-control" type="password" name="password">
+                        <input type="submit" class="btn btn-primary" value="Connexion" name="submit"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </form>
                 </c:when>
-                <c:otherwise></c:otherwise>
+                <c:otherwise>
+                    <form class="navbar-form navbar-right" action="${pageContext.servletContext.contextPath}/Accueil?action=deco" method="post">
+                         <input type="submit" class="btn btn-default" value="Se déconnecter" name="mdp"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </form>
+                </c:otherwise>
             </c:choose>
         </ul>
     </div>

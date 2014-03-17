@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servlets;
 
 import java.io.IOException;
@@ -27,7 +26,7 @@ public class ServletCreerUsers extends HttpServlet {
 
     @EJB
     private GestionnaireUtilisateurs gestionnaireUtilisateurs;
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,42 +38,45 @@ public class ServletCreerUsers extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String action = request.getParameter("action");
-        
+
         String forwardTo = "";
-        
+
         if (action != null) {
             if (action.equals("creerUtilisateursDeTest")) {
                 gestionnaireUtilisateurs.creerUtilisateursDeTest();
                 request.setAttribute("message", "Plein de nouveaux utilisateurs crées.");
                 forwardTo = "AfficherUtilisateurs";
-                
+
             } else if (action.equals("creerUnUtilisateur")) {
-                String nom  = (String) request.getParameter("nom");
+                String nom = (String) request.getParameter("nom");
                 String prenom = (String) request.getParameter("prenom");
-                String  login = (String) request.getParameter("login");
-                
-                if (login != null) {
-                    gestionnaireUtilisateurs.creeUtilisateur(nom, prenom, login);
+                String login = (String) request.getParameter("login");
+                String mdp = (String) request.getParameter("mdp");
+
+                if (login != null && mdp != null && nom != null && prenom != null) {
+                    gestionnaireUtilisateurs.creeUtilisateur(nom, prenom, login, mdp);
                     Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                     request.setAttribute("listeDesUsers", liste);
-                    request.setAttribute("message", "Nouvel utilisateur <b>" + login +"</b> créé.");
-                }
+                    request.setAttribute("message", "Nouvel utilisateur <b>" + login + "</b> créé.");
 
-                forwardTo = "AfficherUtilisateurs";
-            }
-            else {
+                    forwardTo = "AfficherUtilisateurs";
+                }
+                else{
+                    request.setAttribute("messageErreur", "Information incomplètes !");
+                    forwardTo = "creer-utilisateur.jsp";
+                }
+            } else {
                 forwardTo = "creer-utilisateur.jsp";
             }
-        }
-        else {
+        } else {
             forwardTo = "creer-utilisateur.jsp";
         }
-         
+
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo);
         dp.forward(request, response);
-       
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

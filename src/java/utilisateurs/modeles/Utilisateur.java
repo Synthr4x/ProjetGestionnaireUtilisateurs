@@ -26,14 +26,16 @@ public class Utilisateur implements Serializable {
     private String firstname;
     private String lastname;
     private String login;
+    private String mdp;
 
     public Utilisateur() {
     }
 
-    public Utilisateur(final String nom, final String prenom, final String login) {
+    public Utilisateur(final String nom, final String prenom, final String login, final String mdp) {
         this.login = login;
         this.lastname = nom;
         this.firstname = prenom;
+        this.mdp = mdp;
     }
 
     @Override
@@ -99,6 +101,10 @@ public class Utilisateur implements Serializable {
 
     public String getFirstname() {
         return firstname;
+    }
+    
+    public String getMdp() {
+        return this.mdp;
     }
 
     public void setFirstname(String firstname) {

@@ -25,45 +25,45 @@ public class GestionnaireUtilisateurs {
     // Ici injection de code : on n'initialise pas. L'entity manager sera créé  
     // à partir du contenu de persistence.xml  
     public void creerUtilisateursDeTest() {
-        creeUtilisateur("John", "Lennon", "jlennon");
-        creeUtilisateur("Paul", "Mac Cartney", "pmc");
-        creeUtilisateur("Ringo", "Starr", "rstarr");
-        creeUtilisateur("Georges", "Harisson", "georgesH");
-        creeUtilisateur("Jean", "Bon", "jBon");
-        creeUtilisateur("Anne", "Orak", "aOrak");
-        creeUtilisateur("Jon", "Bon Jovi", "jbj");
-        creeUtilisateur("Eddie", "Van Halen", "evh");
-        creeUtilisateur("Wolfgang", "Van Halen", "wvh");
-        creeUtilisateur("David Lee", "Roth", "dlr");
-        creeUtilisateur("Angus", "Young", "aYoung");
-        creeUtilisateur("Malcolm", "Young", "mYoung");
-        creeUtilisateur("Brian", "Johnson", "bJohnson");
-        creeUtilisateur("Bon", "Scott", "ripBS");
-        creeUtilisateur("Freddie", "Mercury", "fMercury");
-        creeUtilisateur("Brian", "May", "bMay");
-        creeUtilisateur("Phil", "Collins", "pCollins");
-        creeUtilisateur("Ozzy", "Osbourne", "princeOfDarkness");
-        creeUtilisateur("Tony", "Iommy", "fatherOfMetal");
-        creeUtilisateur("Bruce", "Dickinson", "bDickinson");
-        creeUtilisateur("Dave", "Murray", "dMurray");
-        creeUtilisateur("Steven", "Taylor", "sTaylor");
-        creeUtilisateur("Ronnie James", "Dio", "pleaseSendUsBackDio");
-        creeUtilisateur("Zack", "Wylde", "zWylde");
-        creeUtilisateur("Marc", "Knopfler", "mk");
-        creeUtilisateur("Paul", "Stanley", "pStanley");
-        creeUtilisateur("Gene", "Simmons", "bigTong");
-        creeUtilisateur("David", "Gilmour", "DGilmour");
-        creeUtilisateur("Mick", "Jagger", "MJagger");
-        creeUtilisateur("Keith", "Richards", "KRichards");
-        creeUtilisateur("Klaus", "Meine", "KMeine");
-        creeUtilisateur("Gordon Matthew Thomas", "Sumner", "String");
-        creeUtilisateur("Roger Daltrey", "Daltrey", "WhoAmI");
-        creeUtilisateur("Steve", "Lukather", "SToto");
-        creeUtilisateur("Saul", "Hudson", "Slash");
+        creeUtilisateur("John", "Lennon", "jlennon", "admin");
+        creeUtilisateur("Paul", "Mac Cartney", "pmc", "admin");
+        creeUtilisateur("Ringo", "Starr", "rstarr", "admin");
+        creeUtilisateur("Georges", "Harisson", "georgesH", "admin");
+        creeUtilisateur("Jean", "Bon", "jBon", "admin");
+        creeUtilisateur("Anne", "Orak", "aOrak", "admin");
+        creeUtilisateur("Jon", "Bon Jovi", "jbj", "admin");
+        creeUtilisateur("Eddie", "Van Halen", "evh", "admin");
+        creeUtilisateur("Wolfgang", "Van Halen", "wvh", "admin");
+        creeUtilisateur("David Lee", "Roth", "dlr", "admin");
+        creeUtilisateur("Angus", "Young", "aYoung", "admin");
+        creeUtilisateur("Malcolm", "Young", "mYoung", "admin");
+        creeUtilisateur("Brian", "Johnson", "bJohnson", "admin");
+        creeUtilisateur("Bon", "Scott", "ripBS", "admin");
+        creeUtilisateur("Freddie", "Mercury", "fMercury", "admin");
+        creeUtilisateur("Brian", "May", "bMay", "admin");
+        creeUtilisateur("Phil", "Collins", "pCollins", "admin");
+        creeUtilisateur("Ozzy", "Osbourne", "princeOfDarkness", "admin");
+        creeUtilisateur("Tony", "Iommy", "fatherOfMetal", "admin");
+        creeUtilisateur("Bruce", "Dickinson", "bDickinson", "admin");
+        creeUtilisateur("Dave", "Murray", "dMurray", "admin");
+        creeUtilisateur("Steven", "Taylor", "sTaylor", "admin");
+        creeUtilisateur("Ronnie James", "Dio", "pleaseSendUsBackDio", "admin");
+        creeUtilisateur("Zack", "Wylde", "zWylde", "admin");
+        creeUtilisateur("Marc", "Knopfler", "mk", "admin");
+        creeUtilisateur("Paul", "Stanley", "pStanley", "admin");
+        creeUtilisateur("Gene", "Simmons", "bigTong", "admin");
+        creeUtilisateur("David", "Gilmour", "DGilmour", "admin");
+        creeUtilisateur("Mick", "Jagger", "MJagger", "admin");
+        creeUtilisateur("Keith", "Richards", "KRichards", "admin");
+        creeUtilisateur("Klaus", "Meine", "KMeine", "admin");
+        creeUtilisateur("Gordon Matthew Thomas", "Sumner", "String", "admin");
+        creeUtilisateur("Roger Daltrey", "Daltrey", "WhoAmI", "admin");
+        creeUtilisateur("Steve", "Lukather", "SToto", "admin");
+        creeUtilisateur("Saul", "Hudson", "Slash", "admin");
     }
 
-    public Utilisateur creeUtilisateur(String nom, String prenom, String login) {
-        Utilisateur u = new Utilisateur(nom, prenom, login);
+    public Utilisateur creeUtilisateur(String nom, String prenom, String login, String mdp) {
+        Utilisateur u = new Utilisateur(nom, prenom, login, mdp);
         em.persist(u);
         return u;
     }
@@ -131,7 +131,18 @@ public class GestionnaireUtilisateurs {
      * @return 
      */
     public boolean isLoginCorrect(String login, String password) {
-        // TODO à finir
-        return true;
+        Query q = em.createQuery("select u from Utilisateur u where u.login=:param");
+        q.setParameter("param", login);
+       
+        if (q.getResultList().isEmpty()) {
+            return false;
+        }
+        
+        Utilisateur u = (Utilisateur) q.getSingleResult();
+        
+        if(u.getMdp().equals(password))
+            return true;
+        
+        return false;
     }
 }

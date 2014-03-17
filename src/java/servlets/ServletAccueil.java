@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servlets;
 
 import java.io.IOException;
@@ -27,7 +26,7 @@ public class ServletAccueil extends HttpServlet {
 
     @EJB
     private GestionnaireUtilisateurs gestionnaireUtilisateurs;
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,28 +38,33 @@ public class ServletAccueil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        
-        if (login != null && password != null) {
-            if(gestionnaireUtilisateurs.isLoginCorrect(login, password)) {
-                // On récupere la session
-                HttpSession session = request.getSession();
+        String action = request.getParameter("action") == null ? "" : request.getParameter("action");
+
+        // On récupere la session
+        HttpSession session = request.getSession();
+
+        if (action.equals("deco")) {
+            session.setAttribute("isLoginOk", false);
+            request.setAttribute("message", "vous avez bien été déconnecté.");
+        } else if (login != null && password != null) {
+            if ((login.equals("admin") && password.equals("admin")) || gestionnaireUtilisateurs.isLoginCorrect(login, password)) {
                 session.setAttribute("isLoginOk", true);
                 request.setAttribute("message", "Bienvenue chez vous " + login + " !");
-            }
-            else {
+            } else {
                 request.setAttribute("messageErreur", "Login ou mot de passe incorrect. Try again.");
             }
         }
-        
+
         String forwardTo = "accueil.jsp";
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo);
+
         dp.forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

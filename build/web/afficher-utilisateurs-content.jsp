@@ -17,8 +17,8 @@
     <!-- La ligne de titre du tableau des comptes -->  
     <tr>  
         <td><b>Login</b></td>  
+        <td><b>Prénom</b></td>
         <td><b>Nom</b></td>  
-        <td><b>Prénom</b></td>  
     </tr>  
 
     <!-- Ici on affiche les lignes, une par utilisateur -->  

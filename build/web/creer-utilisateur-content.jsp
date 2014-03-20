@@ -21,7 +21,7 @@
     <div class="form-group">
     <label for="mdp" class="col-sm-2 control-label">Mot de passe</label>
     <div class="col-sm-2">
-      <input type="password" class="form-control" id="mdp" name="mdp">
+      <input type="password" class="form-control" id="mdp" placeholder="Mot de passe" name="mdp">
     </div>
   </div>
   <input type="hidden" name="action" value="creerUnUtilisateur"/>  

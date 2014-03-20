@@ -145,4 +145,9 @@ public class GestionnaireUtilisateurs {
         
         return false;
     }
+    
+    public void injecterAdministrateur(){
+        Utilisateur admin = new Utilisateur("Admin", "Admin", "admin", "admin");
+        persist(admin);
+    }
 }

@@ -6,7 +6,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,7 +49,7 @@ public class ServletAccueil extends HttpServlet {
             session.setAttribute("isLoginOk", false);
             request.setAttribute("message", "vous avez bien été déconnecté.");
         } else if (login != null && password != null) {
-            if ((login.equals("admin") && password.equals("admin")) || gestionnaireUtilisateurs.isLoginCorrect(login, password)) {
+            if (gestionnaireUtilisateurs.isLoginCorrect(login, password)) {
                 session.setAttribute("isLoginOk", true);
                 request.setAttribute("message", "Bienvenue chez vous " + login + " !");
             } else {

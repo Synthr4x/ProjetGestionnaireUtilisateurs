@@ -56,7 +56,7 @@ public class GestionnaireUtilisateurs {
         creeUtilisateur("Mick", "Jagger", "MJagger", "admin");
         creeUtilisateur("Keith", "Richards", "KRichards", "admin");
         creeUtilisateur("Klaus", "Meine", "KMeine", "admin");
-        creeUtilisateur("Gordon Matthew Thomas", "Sumner", "String", "admin");
+        creeUtilisateur("Gordon Matthew Thomas", "Sumner", "Sting", "admin");
         creeUtilisateur("Roger Daltrey", "Daltrey", "WhoAmI", "admin");
         creeUtilisateur("Steve", "Lukather", "SToto", "admin");
         creeUtilisateur("Saul", "Hudson", "Slash", "admin");
@@ -77,11 +77,14 @@ public class GestionnaireUtilisateurs {
     // Add business logic below. (Right-click in editor and choose  
     // "Insert Code > Add Business Method")  
 
-    public Collection<Utilisateur> getUtilisateurByLogin(String login) {
+    public Utilisateur getUtilisateurByLogin(String login) {
 
         Query q = em.createQuery("select u from Utilisateur u where u.login=:param");
         q.setParameter("param", login);
-        return q.getResultList();
+        if (q.getResultList().size() != 0)
+            return (Utilisateur)q.getSingleResult();
+        else
+            return null;
     }
 
     public Utilisateur majUtilisateur(String login, String nom, String prenom) {
@@ -119,9 +122,14 @@ public class GestionnaireUtilisateurs {
         Query q = em.createQuery("select count(u) from Utilisateur u");
         return Integer.valueOf(q.getSingleResult().toString());
     }
-
-    public void persist(Object object) {
-        em.persist(object);
+    
+    /**
+     * Méthode permettant de supprimer un objet dans la base de donnée
+     * @param <T> la classe de l'objet à supprimer
+     * @param o  l'objet à supprimer
+     */
+    public <T> void remove(T o) {  
+        em.remove(em.merge(o));
     }
     
     /**
@@ -148,6 +156,6 @@ public class GestionnaireUtilisateurs {
     
     public void injecterAdministrateur(){
         Utilisateur admin = new Utilisateur("Admin", "Admin", "admin", "admin");
-        persist(admin);
+        em.persist(admin);
     }
 }

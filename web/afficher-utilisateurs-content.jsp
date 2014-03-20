@@ -18,7 +18,8 @@
     <tr>  
         <td><b>Login</b></td>  
         <td><b>Prénom</b></td>
-        <td><b>Nom</b></td>  
+        <td><b>Nom</b></td>
+        <td></td>
     </tr>  
 
     <!-- Ici on affiche les lignes, une par utilisateur -->  
@@ -29,7 +30,8 @@
         <tr>  
             <td>${u.login}</td>  
             <td>${u.lastname}</td>  
-            <td>${u.firstname}</td>  
+            <td>${u.firstname}</td>
+            <td><a href="AfficherUtilisateurs?action=supprimerUtilisateur&login=${u.login}" class="glyphicon glyphicon-remove"></a></td>
             <!-- On compte le nombre de users -->  
             <c:set var="total" value="${total+1}"/>  
         </tr>  
@@ -42,7 +44,7 @@
     
     <c:forEach var="i" begin="1" end="${totalUtilisateur}" step="10">
         <li
-            <c:if test="${i==offset}">         
+            <c:if test="${i==offset+1}">
                 class="active"
             </c:if>  
             >

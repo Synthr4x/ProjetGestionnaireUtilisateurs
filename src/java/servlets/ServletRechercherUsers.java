@@ -8,6 +8,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -44,13 +45,17 @@ public class ServletRechercherUsers extends HttpServlet {
          String forwardTo = "rechercher-utilisateur.jsp";
         
         if (login != null) {
-            Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUtilisateurByLogin(login);
+            Utilisateur u = gestionnaireUtilisateurs.getUtilisateurByLogin(login);
+            ArrayList<Utilisateur> liste = new ArrayList();
+            
+            if (u!=null)
+                liste.add(u);
+            else
+                request.setAttribute("messageErreur", "L'utilisateur " + login + " n'existe pas.");
+            
             request.setAttribute("listeDesUsers", liste);
             request.setAttribute("offset", 0);
             request.setAttribute("totalUtilisateur", 1);
-            
-            if (liste.size() == 0)
-                request.setAttribute("messageErreur", "L'utilisateur " + login + " n'existe pas.");
             
             forwardTo = "afficher-utilisateurs.jsp";
         }

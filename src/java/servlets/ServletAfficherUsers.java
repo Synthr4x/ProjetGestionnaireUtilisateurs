@@ -36,13 +36,32 @@ public class ServletAfficherUsers extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String action = request.getParameter("action");
+        if (action!= null) {
+            if (action.equals("supprimerUtilisateur")) {
+                String login = request.getParameter("login");
+                
+                if (login != null) {
+                    Utilisateur u = gestionnaireUtilisateurs.getUtilisateurByLogin(login);
+                    
+                    if (u != null) {
+                        gestionnaireUtilisateurs.remove(u);
+                        request.setAttribute("message", "L'utilisateur " + u.getLogin() + " a été supprimé.");
+                    }
+                    else {
+                        request.setAttribute("messageErreur", "L'utilisateur " + login + " n'existe pas.");
+                    }
+                }
+            }
+        }
+        
+        
         String strOffset = request.getParameter("offset");
-
         int offset = 0;
 
         if (strOffset != null) {
             offset = Integer.parseInt(strOffset);
-        }            
+        }
         Collection<Utilisateur> liste = gestionnaireUtilisateurs.getListeUtilisateurs(offset);
         request.setAttribute("listeDesUsers", liste);
         request.setAttribute("offset", offset);

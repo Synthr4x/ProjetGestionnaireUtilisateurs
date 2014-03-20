@@ -31,7 +31,8 @@
             <td>${u.login}</td>  
             <td>${u.lastname}</td>  
             <td>${u.firstname}</td>
-            <td><a href="AfficherUtilisateurs?action=supprimerUtilisateur&login=${u.login}" class="glyphicon glyphicon-remove"></a></td>
+            <td><a href="AfficherUtilisateurs?action=supprimerUtilisateur&login=${u.login}" class="glyphicon glyphicon-remove"
+                   style="color:black;"></a></td>
             <!-- On compte le nombre de users -->  
             <c:set var="total" value="${total+1}"/>  
         </tr>  

@@ -23,9 +23,6 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- Si la personne n'est pas connectée, elle n'a pas accès au menu de navigation -->
-                <c:if test="${sessionScope.isLoginOk == true}"> 
-                    <jsp:include page="menu.jsp"/>  
-                </c:if>
                 <c:choose>
                     <c:when test="${sessionScope.isLoginOk == true}"><jsp:include page="menu.jsp"/> 
                         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

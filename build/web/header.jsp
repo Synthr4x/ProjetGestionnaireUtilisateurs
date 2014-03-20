@@ -16,7 +16,7 @@
 
 
             <c:choose>
-                <c:when test="${sessionScope.isLoginOk == false}">
+                <c:when test="${sessionScope.isLoginOk == null || sessionScope.isLoginOk == false}">
                     <form class="navbar-form navbar-right" action="${pageContext.servletContext.contextPath}/Accueil" method="post">
                         <input class="form-control" type="text" placeholder="Login" name="login">
                         <input class="form-control" type="password" name="password">

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servlets;
 
 import java.io.IOException;
@@ -18,13 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 import utilisateurs.gestionnaire.GestionnaireUtilisateurs;
 import utilisateurs.modeles.Utilisateur;
 
-
 @WebServlet(name = "ModifierUtilisateurs", urlPatterns = {"/ModifierUtilisateurs"})
 public class ServletModifierUsers extends HttpServlet {
 
     @EJB
     private GestionnaireUtilisateurs gestionnaireUtilisateurs;
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,47 +34,50 @@ public class ServletModifierUsers extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String action = request.getParameter("action");
         String forwardTo = "";
-        
+
         if (action != null) {
             if (action.equals("updateUtilisateur")) {
-                String nom  = (String) request.getParameter("nom");
+                String nom = (String) request.getParameter("nom");
                 String prenom = (String) request.getParameter("prenom");
-                String  login = (String) request.getParameter("login");
+                String login = (String) request.getParameter("login");
 
                 if (login != null) {
                     Utilisateur u = gestionnaireUtilisateurs.majUtilisateur(login, nom, prenom);
 
                     ArrayList<Utilisateur> liste = new ArrayList();
-                    
+
                     if (u == null) {
                         request.setAttribute("messageErreur", "L'utilisateur " + login + " n'existe pas.");
                         request.setAttribute("offset", 0);
                         request.setAttribute("totalUtilisateur", 0);
-                    }
-                    else {
+                    } else {
                         liste.add(u);
                         request.setAttribute("listeDesUsers", liste);
                         request.setAttribute("offset", 0);
                         request.setAttribute("totalUtilisateur", 1);
                     }
-                    
+
                     forwardTo = "afficher-utilisateurs.jsp";
                 }
-            }
-            else
+            } else {
                 forwardTo = "modifier-utilisateur.jsp";
-        }
-        else {
+            }
+        } else {
+            if (request.getParameter("login") != null) {
+                request.setAttribute("login", (String) request.getParameter("login"));
+            } else {
+                request.setAttribute("login", "");
+            }
+
             forwardTo = "modifier-utilisateur.jsp";
         }
-        
-          
+
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo);
-        dp.forward(request, response);       
-        
+        dp.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

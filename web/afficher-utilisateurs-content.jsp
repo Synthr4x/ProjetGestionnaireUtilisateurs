@@ -9,7 +9,7 @@
 </c:if>  
 
 
-    
+
 <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->  
 <h2>Liste des utilisateurs</h2>  
 <br>
@@ -31,8 +31,10 @@
             <td>${u.login}</td>  
             <td>${u.lastname}</td>  
             <td>${u.firstname}</td>
-            <td><a href="AfficherUtilisateurs?action=supprimerUtilisateur&login=${u.login}" class="glyphicon glyphicon-remove"
-                   style="color:black;"></a></td>
+            <td> <a href="ModifierUtilisateurs?login=${u.login}" class="glyphicon glyphicon-pencil"
+                    style="color:black;"></a>&nbsp;&nbsp;&nbsp;<a href="AfficherUtilisateurs?action=supprimerUtilisateur&login=${u.login}" class="glyphicon glyphicon-remove"
+                    style="color:black;"></a>
+            </td>
             <!-- On compte le nombre de users -->  
             <c:set var="total" value="${total+1}"/>  
         </tr>  
@@ -42,7 +44,7 @@
     <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td></td></tr>  
 </table>
 <ul class="pagination">
-    
+
     <c:forEach var="i" begin="1" end="${totalUtilisateur}" step="10">
         <li
             <c:if test="${i==offset+1}">

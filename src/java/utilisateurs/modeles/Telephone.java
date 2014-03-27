@@ -20,6 +20,9 @@ import javax.validation.constraints.Pattern;
 @Entity
 public class Telephone implements Serializable {
 
+
+    enum TypeTel {FIXE, PORTABLE};
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,17 +30,20 @@ public class Telephone implements Serializable {
 
     @Pattern(regexp = "[0]{1}[0-9]{9}")
     private String numero;
-    
+
     @ManyToOne
     private Utilisateur u;
+    
+    private TypeTel t;
 
     public Telephone() {
     }
-    
-    public Telephone(final String numero, Utilisateur u) {
+
+    public Telephone(final String numero, Utilisateur u, TypeTel t) {
         this.numero = numero;
         this.u = u;
-        
+        this.t = t;
+
     }
 
     public int getId() {

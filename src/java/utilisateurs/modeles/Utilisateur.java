@@ -6,13 +6,15 @@
 package utilisateurs.modeles;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-/**
+/** 
  *
  * @author Christian
  */
@@ -28,9 +30,12 @@ public class Utilisateur implements Serializable {
     private String lastname;
     private String login;
     private String mdp;
-    
+
+    @OneToMany(mappedBy = "u")
+    private List<Telephone> numeros;
+
     @OneToOne
-    private Adresse adresse;  
+    private Adresse adresse;
 
     public Utilisateur() {
     }
@@ -106,7 +111,7 @@ public class Utilisateur implements Serializable {
     public String getFirstname() {
         return firstname;
     }
-    
+
     public String getMdp() {
         return this.mdp;
     }
@@ -114,7 +119,7 @@ public class Utilisateur implements Serializable {
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
-    
+
     public Adresse getAdresse() {
         return adresse;
     }
@@ -123,5 +128,16 @@ public class Utilisateur implements Serializable {
         this.adresse = adresse;
     }
 
+    public void addNumero(Telephone u) {
+        numeros.add(u);
+    }
+
+    public void removeUtilisateur(Telephone u) {
+        numeros.remove(u);
+    }
+
+    public List<Telephone> getUtilisateurs() {
+        return numeros;
+    }
 
 }

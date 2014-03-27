@@ -24,6 +24,19 @@
       <input type="password" class="form-control" id="mdp" placeholder="Mot de passe" name="mdp">
     </div>
   </div>
+    <div class="form-group">
+    <label for="ville" class="col-sm-2 control-label">Ville</label>
+    <div class="col-sm-2">
+      <input type="text" class="form-control" id="ville" placeholder="Ville" name="ville">
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="cp" class="col-sm-2 control-label">Code postal</label>
+    <div class="col-sm-2">
+      <input type="text" class="form-control" id="cp" placeholder="Code postal" name="cp">
+    </div>
+  </div>
+    
   <input type="hidden" name="action" value="creerUnUtilisateur"/>  
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

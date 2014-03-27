@@ -34,7 +34,7 @@
             <td>${u.lastname}</td>  
             <td>${u.firstname}</td>
             <td>${u.adresse.ville}</td>
-            <td>${u.adresse.ville}</td>
+            <td>${u.adresse.codePostal}</td>
             <td> <a href="ModifierUtilisateurs?login=${u.login}" class="glyphicon glyphicon-pencil"
                     style="color:black;"></a>&nbsp;&nbsp;&nbsp;<a href="AfficherUtilisateurs?action=supprimerUtilisateur&login=${u.login}" class="glyphicon glyphicon-remove"
                     style="color:black;"></a>

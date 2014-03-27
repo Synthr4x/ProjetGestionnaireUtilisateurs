@@ -175,7 +175,7 @@ public class GestionnaireUtilisateurs {
     }
     
     public Adresse creerAdresse(String ville, String cp) {
-        Adresse a = new Adresse("Biot", "06410");  
+        Adresse a = new Adresse(ville, cp);  
         em.persist(a);
         // Note : après un persist, les objets sont connectés  
         

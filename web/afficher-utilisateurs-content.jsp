@@ -19,6 +19,8 @@
         <td><b>Login</b></td>  
         <td><b>Prénom</b></td>
         <td><b>Nom</b></td>
+        <td><b>Ville</b></td>
+        <td><b>Code postal</b></td>
         <td></td>
     </tr>  
 
@@ -31,6 +33,8 @@
             <td>${u.login}</td>  
             <td>${u.lastname}</td>  
             <td>${u.firstname}</td>
+            <td>${u.adresse.ville}</td>
+            <td>${u.adresse.ville}</td>
             <td> <a href="ModifierUtilisateurs?login=${u.login}" class="glyphicon glyphicon-pencil"
                     style="color:black;"></a>&nbsp;&nbsp;&nbsp;<a href="AfficherUtilisateurs?action=supprimerUtilisateur&login=${u.login}" class="glyphicon glyphicon-remove"
                     style="color:black;"></a>

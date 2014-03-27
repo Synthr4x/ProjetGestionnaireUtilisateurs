@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -27,6 +28,9 @@ public class Utilisateur implements Serializable {
     private String lastname;
     private String login;
     private String mdp;
+    
+    @OneToOne
+    private Adresse adresse;  
 
     public Utilisateur() {
     }
@@ -110,5 +114,14 @@ public class Utilisateur implements Serializable {
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
+    
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+
 
 }

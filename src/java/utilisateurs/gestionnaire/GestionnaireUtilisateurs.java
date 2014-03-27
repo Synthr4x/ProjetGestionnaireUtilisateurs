@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import utilisateurs.modeles.Adresse;
 import utilisateurs.modeles.Utilisateur;
 
 /**
@@ -25,46 +26,63 @@ public class GestionnaireUtilisateurs {
     // Ici injection de code : on n'initialise pas. L'entity manager sera créé  
     // à partir du contenu de persistence.xml  
     public void creerUtilisateursDeTest() {
-        creeUtilisateur("John", "Lennon", "jlennon", "admin");
-        creeUtilisateur("Paul", "Mac Cartney", "pmc", "admin");
-        creeUtilisateur("Ringo", "Starr", "rstarr", "admin");
-        creeUtilisateur("Georges", "Harisson", "georgesH", "admin");
-        creeUtilisateur("Jean", "Bon", "jBon", "admin");
-        creeUtilisateur("Anne", "Orak", "aOrak", "admin");
-        creeUtilisateur("Jon", "Bon Jovi", "jbj", "admin");
-        creeUtilisateur("Eddie", "Van Halen", "evh", "admin");
-        creeUtilisateur("Wolfgang", "Van Halen", "wvh", "admin");
-        creeUtilisateur("David Lee", "Roth", "dlr", "admin");
-        creeUtilisateur("Angus", "Young", "aYoung", "admin");
-        creeUtilisateur("Malcolm", "Young", "mYoung", "admin");
-        creeUtilisateur("Brian", "Johnson", "bJohnson", "admin");
-        creeUtilisateur("Bon", "Scott", "ripBS", "admin");
-        creeUtilisateur("Freddie", "Mercury", "fMercury", "admin");
-        creeUtilisateur("Brian", "May", "bMay", "admin");
-        creeUtilisateur("Phil", "Collins", "pCollins", "admin");
-        creeUtilisateur("Ozzy", "Osbourne", "princeOfDarkness", "admin");
-        creeUtilisateur("Tony", "Iommy", "fatherOfMetal", "admin");
-        creeUtilisateur("Bruce", "Dickinson", "bDickinson", "admin");
-        creeUtilisateur("Dave", "Murray", "dMurray", "admin");
-        creeUtilisateur("Steven", "Taylor", "sTaylor", "admin");
-        creeUtilisateur("Ronnie James", "Dio", "pleaseSendUsBackDio", "admin");
-        creeUtilisateur("Zack", "Wylde", "zWylde", "admin");
-        creeUtilisateur("Marc", "Knopfler", "mk", "admin");
-        creeUtilisateur("Paul", "Stanley", "pStanley", "admin");
-        creeUtilisateur("Gene", "Simmons", "bigTong", "admin");
-        creeUtilisateur("David", "Gilmour", "DGilmour", "admin");
-        creeUtilisateur("Mick", "Jagger", "MJagger", "admin");
-        creeUtilisateur("Keith", "Richards", "KRichards", "admin");
-        creeUtilisateur("Klaus", "Meine", "KMeine", "admin");
-        creeUtilisateur("Gordon Matthew Thomas", "Sumner", "Sting", "admin");
-        creeUtilisateur("Roger Daltrey", "Daltrey", "WhoAmI", "admin");
-        creeUtilisateur("Steve", "Lukather", "SToto", "admin");
-        creeUtilisateur("Saul", "Hudson", "Slash", "admin");
+         // On cree des adresses et on les insère dans la base  
+        Adresse biot = new Adresse("Biot", "06410");  
+        em.persist(biot);  
+        Adresse valbonne = new Adresse("Valbonne", "06560");  
+        em.persist(valbonne);  
+        Adresse nice = new Adresse("Nice", "06000");  
+        em.persist(nice);  
+          
+        // Note : après un persist, les objets sont connectés  
+        
+        creeUtilisateur("John", "Lennon", "jlennon", "admin", biot);
+        creeUtilisateur("Paul", "Mac Cartney", "pmc", "admin", valbonne);
+        creeUtilisateur("Ringo", "Starr", "rstarr", "admin", nice);
+        creeUtilisateur("Georges", "Harisson", "georgesH", "admin", biot);
+        creeUtilisateur("Jean", "Bon", "jBon", "admin", biot);
+        creeUtilisateur("Anne", "Orak", "aOrak", "admin", biot);
+        creeUtilisateur("Jon", "Bon Jovi", "jbj", "admin", biot);
+        creeUtilisateur("Eddie", "Van Halen", "evh", "admin", biot);
+        creeUtilisateur("Wolfgang", "Van Halen", "wvh", "admin", biot);
+        creeUtilisateur("David Lee", "Roth", "dlr", "admin", biot);
+        creeUtilisateur("Angus", "Young", "aYoung", "admin", biot);
+        creeUtilisateur("Malcolm", "Young", "mYoung", "admin", biot);
+        creeUtilisateur("Brian", "Johnson", "bJohnson", "admin", biot);
+        creeUtilisateur("Bon", "Scott", "ripBS", "admin", biot);
+        creeUtilisateur("Freddie", "Mercury", "fMercury", "admin", biot);
+        creeUtilisateur("Brian", "May", "bMay", "admin", biot);
+        creeUtilisateur("Phil", "Collins", "pCollins", "admin", biot);
+        creeUtilisateur("Ozzy", "Osbourne", "princeOfDarkness", "admin", biot);
+        creeUtilisateur("Tony", "Iommy", "fatherOfMetal", "admin",valbonne);
+        creeUtilisateur("Bruce", "Dickinson", "bDickinson", "admin",valbonne);
+        creeUtilisateur("Dave", "Murray", "dMurray", "admin",valbonne);
+        creeUtilisateur("Steven", "Taylor", "sTaylor", "admin",valbonne);
+        creeUtilisateur("Ronnie James", "Dio", "pleaseSendUsBackDio", "admin",valbonne);
+        creeUtilisateur("Zack", "Wylde", "zWylde", "admin",valbonne);
+        creeUtilisateur("Marc", "Knopfler", "mk", "admin",valbonne);
+        creeUtilisateur("Paul", "Stanley", "pStanley", "admin",valbonne);
+        creeUtilisateur("Gene", "Simmons", "bigTong", "admin",nice);
+        creeUtilisateur("David", "Gilmour", "DGilmour", "admin",nice);
+        creeUtilisateur("Mick", "Jagger", "MJagger", "admin",nice);
+        creeUtilisateur("Keith", "Richards", "KRichards", "admin",nice);
+        creeUtilisateur("Klaus", "Meine", "KMeine", "admin",nice);
+        creeUtilisateur("Gordon Matthew Thomas", "Sumner", "Sting", "admin",nice);
+        creeUtilisateur("Roger Daltrey", "Daltrey", "WhoAmI", "admin",nice);
+        creeUtilisateur("Steve", "Lukather", "SToto", "admin",nice);
+        creeUtilisateur("Saul", "Hudson", "Slash", "admin",nice);
     }
 
-    public Utilisateur creeUtilisateur(String nom, String prenom, String login, String mdp) {
-        Utilisateur u = new Utilisateur(nom, prenom, login, mdp);
-        em.persist(u);
+    public Utilisateur creeUtilisateur(String nom, String prenom, String login, String mdp, Adresse a) {
+        Utilisateur u = new Utilisateur(nom, prenom, login, mdp);  
+        // On met à jour la relation, elle est déjà en base  
+        u.setAdresse(a);  
+          
+        // On persiste l'utilisateur, la relation est déjà en base, cela va donc  
+        // ajouter une ligne dans la table des utilisateur avec une clé étrangère  
+        // correspondant à l'adresse  
+        em.persist(u);  
+        
         return u;
     }
 

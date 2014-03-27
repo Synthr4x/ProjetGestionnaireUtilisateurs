@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import utilisateurs.gestionnaire.GestionnaireUtilisateurs;
+import utilisateurs.modeles.Adresse;
 import utilisateurs.modeles.Utilisateur;
 
 /**
@@ -54,9 +55,12 @@ public class ServletCreerUsers extends HttpServlet {
                 String prenom = (String) request.getParameter("prenom");
                 String login = (String) request.getParameter("login");
                 String mdp = (String) request.getParameter("mdp");
+                String ville = (String) request.getParameter("ville");
+                String cp = (String) request.getParameter("cp");
 
-                if (login != null && mdp != null && nom != null && prenom != null) {
-                    gestionnaireUtilisateurs.creeUtilisateur(nom, prenom, login, mdp);
+                if (login != null && mdp != null && nom != null && prenom != null && ville != null && cp != null) {
+                    Adresse a = gestionnaireUtilisateurs.creerAdresse(ville, cp);
+                    gestionnaireUtilisateurs.creeUtilisateur(nom, prenom, login, mdp, a);
                     Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                     request.setAttribute("listeDesUsers", liste);
                     request.setAttribute("message", "Nouvel utilisateur <b>" + login + "</b> créé.");

@@ -27,12 +27,9 @@ public class GestionnaireUtilisateurs {
     // à partir du contenu de persistence.xml  
     public void creerUtilisateursDeTest() {
          // On cree des adresses et on les insère dans la base  
-        Adresse biot = new Adresse("Biot", "06410");  
-        em.persist(biot);  
-        Adresse valbonne = new Adresse("Valbonne", "06560");  
-        em.persist(valbonne);  
-        Adresse nice = new Adresse("Nice", "06000");  
-        em.persist(nice);  
+        Adresse biot = creerAdresse("Biot", "06410");  
+        Adresse valbonne = creerAdresse("Valbonne", "06560");   
+        Adresse nice = creerAdresse("Nice", "06000");   
           
         // Note : après un persist, les objets sont connectés  
         
@@ -175,5 +172,13 @@ public class GestionnaireUtilisateurs {
     public void injecterAdministrateur(){
         Utilisateur admin = new Utilisateur("Admin", "Admin", "admin", "admin");
         em.persist(admin);
+    }
+    
+    public Adresse creerAdresse(String ville, String cp) {
+        Adresse a = new Adresse("Biot", "06410");  
+        em.persist(a);
+        // Note : après un persist, les objets sont connectés  
+        
+        return a;
     }
 }
